@@ -1,0 +1,35 @@
+body {
+    margin : 0;
+    padding : 0;
+}
+.wrapper {
+    min-width: calc((30px + 5px) * 20);
+    min-height: calc((30px + 5px) * 15);
+    max-width: calc((30px + 5px) * 20);
+    max-height: calc((30px + 5px) * 15);
+    border-style: double;
+}
+#game {
+    flex: 1;
+    min-width: calc((30px + 5px) * 20);
+    min-height: calc((30px + 5px) * 15);
+    max-width: calc((30px + 5px) * 20);
+    max-height: calc((30px + 5px) * 15);
+    display: flex;
+    flex-wrap: wrap;
+}
+.blank {
+    width: 30px;
+    height: 30px;
+    /* background-color: purple; */
+    margin: 2.5px;
+}
+.food {
+    background-color: lime;
+}
+.head {
+    background-color: red;
+}
+.body {
+    background-color: orange;
+}
