@@ -129,7 +129,9 @@ document.body.onkeydown = function(ev){
 
 
     if (temp[0] + direction[0][0] != 0 && temp[1] + direction[0][1] != 0){
+        if(temp[0] != direction[0][0] || temp[1] != direction[0][1]){   
             direction[1] = temp;
+        }
     }
     
 
