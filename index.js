@@ -131,13 +131,13 @@ document.body.onkeydown = function(ev){
 
 
     if(direction.length == 0){
-        if(temp[0] + currentDirection[0] != 0 || temp[1] + currentDirection[1]){
-            direction.push(temp);
+        if(temp[0] + currentDirection[0] != 0 || temp[1] + currentDirection[1] != 0){
+            direction[0] = temp;
         }
     }
-    else if (direction.length == 1){
-        if(temp[0] + direction[1][0] != 0 || temp[1] + direction[1][1]){
-            direction.push(temp);
+    else if (direction.length >= 1){
+        if(temp[0] + direction[1][0] != 0 || temp[1] + direction[1][1] != 0){
+            direction[1] = temp;
         }
     }
     
