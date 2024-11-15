@@ -1,4 +1,5 @@
 const numOfSnakes = 1;
+let currentDirection;
 var direction;
 
 const boxSize = 30;
@@ -12,7 +13,7 @@ let grid;
 
 window.onload = function(ev){
 
-    direction = [[0,1], undefined];
+    direction = [[0,1]];
 
 
     snakeBodyLoc = new Array();
@@ -64,16 +65,17 @@ window.onload = function(ev){
 
 function run(){
 
-    let dirQueue;
+    let dir;
 
-    if(direction[1]==undefined){
-        dirQueue = direction[0];
-    }
-    else {
-        dirQueue = direction.shift();
+    dir = direction.shift();
+
+    if(!dir){
+        dir = currentDirection;
     }
     
-    let newHeadLoc = [snakeBodyLoc[0][0] + dirQueue[0], snakeBodyLoc[0][1] + dirQueue[1]];
+    currentDirection = dir;
+
+    let newHeadLoc = [snakeBodyLoc[0][0] + dir[0], snakeBodyLoc[0][1] + dir[1]];
 
 
 
@@ -128,9 +130,14 @@ document.body.onkeydown = function(ev){
     }
 
 
-    if (temp[0] + direction[0][0] != 0 && temp[1] + direction[0][1] != 0){
-        if(temp[0] != direction[0][0] || temp[1] != direction[0][1]){   
-            direction[1] = temp;
+    if(direction.length == 0){
+        if(temp[0] + currentDirection[0] != 0 || temp[1] + currentDirection[1]){
+            direction.push(temp);
+        }
+    }
+    else if (direction.length == 1){
+        if(temp[0] + direction[1][0] != 0 || temp[1] + direction[1][1]){
+            direction.push(temp);
         }
     }
     
