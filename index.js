@@ -12,7 +12,7 @@ let grid;
 
 window.onload = function(ev){
 
-    direction = [0,1];
+    direction = [[0,1], undefined];
 
 
     snakeBodyLoc = new Array();
@@ -63,10 +63,17 @@ window.onload = function(ev){
 }
 
 function run(){
-    
 
+    let dirQueue;
+
+    if(direction[1]==undefined){
+        dirQueue = direction[0];
+    }
+    else {
+        dirQueue = direction.shift();
+    }
     
-    let newHeadLoc = [snakeBodyLoc[0][0] + direction[0], snakeBodyLoc[0][1] + direction[1]];
+    let newHeadLoc = [snakeBodyLoc[0][0] + dirQueue[0], snakeBodyLoc[0][1] + dirQueue[1]];
 
 
 
@@ -105,27 +112,27 @@ function run(){
 
 
 document.body.onkeydown = function(ev){
+    let temp;
     if(ev.key == "ArrowUp" || ev.key == "w"){
-        if(direction[0] != 1){
-            direction = [-1,0];
-        }
+        temp = [-1,0];
     }
     else if (ev.key == "ArrowDown" || ev.key == "s"){
-        if(direction[0] != -1){
-            direction = [1,0];
-        }
+        temp = [1,0];
     }
     else if (ev.key == "ArrowLeft" || ev.key == "a"){
-        if(direction[1] != 1){
-            direction = [0,-1];
-        }
+        temp = [0,-1];
         
     }
     else if (ev.key == "ArrowRight" || ev.key == "d"){
-        if(direction[1] != -1){
-            direction = [0,1];
-        }
+        temp = [0,1];
     }
+
+
+    if (temp[0] + direction[0][0] != 0 && temp[1] + direction[0][1] != 0){
+            direction[1] = temp;
+    }
+    
+
 }
 
 function random(min, max){
